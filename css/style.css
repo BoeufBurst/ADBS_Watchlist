@@ -1,0 +1,249 @@
+/* =======================
+   BASE
+======================= */
+* { box-sizing: border-box; }
+body {
+    margin: 0;
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+    background: #121212;
+    color: #fff;
+}
+
+/* link style */
+a { color: #1db954; text-decoration: none; }
+
+/* =======================
+   GLOBAL CONTAINER
+======================= */
+.container {
+    max-width: 980px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Background glow layer */
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background:
+        radial-gradient(circle at 8% 10%, #1db95422 0%, transparent 35%),
+        radial-gradient(circle at 92% 90%, #1db95411 0%, transparent 35%);
+    z-index: -1;
+}
+
+/* =======================
+   TOP BAR / HEADER
+======================= */
+.top-bar {
+    background: transparent;
+    border-bottom: 1px solid rgba(255,255,255,0.02);
+}
+
+.header-inner {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.brand {
+    margin: 0;
+    font-size: 24px;
+    font-weight: 600;
+}
+
+/* Search bar (in header) */
+.search-bar {
+    margin-left: 20px;
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+
+.search-bar input,
+.search-bar select {
+    background: #242424;
+    border: 1px solid #333;
+    color: #fff;
+    padding: 8px 10px;
+    border-radius: 8px;
+}
+
+/* Add button aligned right */
+.add-btn {
+    margin-left: auto;
+    background: #1db954;
+    color: #000;
+    padding: 8px 12px;
+    border-radius: 14px;
+    font-weight: 700;
+}
+
+/* small go button */
+.btn-go {
+    background: #1db954;
+    border: none;
+    color: #000;
+    padding: 8px 10px;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+/* =======================
+   MAIN GRID & CARDS
+======================= */
+.main-grid { padding: 20px 20px 60px; }
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 20px;
+}
+
+/* card */
+.card {
+    background: #181818;
+    padding: 18px;
+    border-radius: 12px;
+    position: relative;
+    transition: transform 0.18s ease, box-shadow 0.18s ease;
+}
+
+.card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 12px 40px rgba(0,0,0,0.6);
+}
+
+.card-actions {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    display: flex;
+    gap: 8px;
+    opacity: 0;
+    transition: opacity 0.15s;
+}
+
+.card:hover .card-actions { opacity: 1; }
+
+.action { color: #bdbdbd; font-size: 14px; text-decoration: none; }
+.action.edit { color: #1db954; }
+.action.del  { color: #ff6b6b; }
+
+/* card content */
+.card-title { margin: 0 0 8px; font-size: 16px; }
+.type { color: #b3b3b3; font-size: 13px; margin-top: 8px; }
+
+/* =======================
+   BADGES (status)
+======================= */
+.badge {
+    display: inline-block;
+    padding: 6px 10px;
+    border-radius: 999px;
+    font-size: 12px;
+    margin-bottom: 8px;
+}
+
+/* names match status values */
+.planned   { background: #333; color: #ddd; }
+.watching  { background: #1db954; color: #000; }
+.completed { background: #0d7a40; color: #fff; }
+
+/* =======================
+   EMPTY STATE
+======================= */
+.empty-state {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 40px;
+    opacity: 0.85;
+}
+
+/* =======================
+   FORMS (Add / Edit)
+======================= */
+.page-center {
+    min-height: calc(100vh - 40px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 20px;
+}
+
+.form-card {
+    background: #181818;
+    padding: 28px;
+    border-radius: 12px;
+    width: 100%;
+    max-width: 460px;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.5);
+}
+
+.form-card h1 { margin: 0 0 14px; text-align: center; }
+
+/* compact stacked form */
+.form-card form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+label {
+    font-size: 13px;
+    margin-bottom: -6px; /* tightened spacing */
+    color: #b3b3b3;
+}
+
+input, select {
+    background: #242424;
+    border: 1px solid #333;
+    color: #fff;
+    padding: 12px;
+    border-radius: 8px;
+    font-size: 14px;
+}
+
+input::placeholder { color: #777; }
+
+input:focus, select:focus {
+    border-color: #1db954;
+    box-shadow: 0 0 0 6px rgba(29,185,84,0.08);
+    outline: none;
+}
+
+/* form button */
+.form-card button {
+    margin-top: 6px;
+    background: #1db954;
+    color: #000;
+    padding: 12px;
+    border-radius: 10px;
+    font-weight: 700;
+    border: none;
+    cursor: pointer;
+}
+
+/* =======================
+   BACK LINK (Add/Edit)
+   - placed inside normal flow, not absolute
+======================= */
+.back-link {
+    display: inline-block;
+    margin: 14px 0 0 0;
+    color: #bdbdbd;
+}
+
+/* small utility */
+.link-primary { color: #1db954; font-weight: 700; }
+.card-poster {
+    width: 100%;
+    height: 140px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-bottom: 12px;
+}
+
+.card-poster.placeholder {
+    background: #333;
+}
